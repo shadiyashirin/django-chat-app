@@ -1,0 +1,53 @@
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+env/
+env2/
+venv/
+.venv/
+
+# ==========================
+# Django
+# ==========================
+db.sqlite3
+*.log
+local_settings.py
+
+# Static & Media (optional - if storing locally)
+media/
+staticfiles/
+
+# ==========================
+# Environment Variables
+# ==========================
+.env
+.env.*
+
+# ==========================
+# VS Code
+# ==========================
+.vscode/
+
+# ==========================
+# Mac / Windows junk
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Coverage / Testing
+# ==========================
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ==========================
+# Redis / Celery (future)
+# ==========================
+*.rdb
+celerybeat-schedule
