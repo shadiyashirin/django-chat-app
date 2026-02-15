@@ -12,7 +12,17 @@ SECRET_KEY = 'django-insecure-kg)4+#pz3%h4@sr_ey!$4+dja_4xy+_d$=bzhwu+l(23)hwilu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000"]
 
 
 
@@ -27,10 +37,13 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'accounts',
-    'chat'
+    'chat',
+    'channels',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,6 +72,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+
+ASGI_APPLICATION = "backend.asgi.application"
+
 
 
 
@@ -112,3 +128,12 @@ REST_FRAMEWORK = {
     ),
     
     }
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}

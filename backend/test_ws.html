@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+<h2>WebSocket Test</h2>
+<script>
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcxMDg0Mzk2LCJpYXQiOjE3NzEwODQwOTYsImp0aSI6ImQ4MDU3OTFmMzg1ZTQ0ZjZiMzI2ZGNmNzUxZDRlNWQ1IiwidXNlcl9pZCI6IjIifQ.589rMh7bwYt32xxS3ovar9fVeQSKl4pspvcQScnQhM4";
+const roomId = 6;
+
+const socket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${roomId}/?token=${token}`);
+
+socket.onopen = () => console.log("Connected");
+socket.onmessage = (e) => console.log("Received:", e.data);
+socket.onerror = (e) => console.log("Error:", e);
+socket.onclose = () => console.log("Closed");
+
+setTimeout(() => {
+    socket.send(JSON.stringify({ text: "Hello WebSocket" }));
+}, 2000);
+</script>
+</body>
+</html>
